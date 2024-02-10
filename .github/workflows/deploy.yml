@@ -12,7 +12,7 @@ jobs:
     steps:
 
     - name: Set Git User
-        run: |
+       run: |
           git config --global user.name "Perry3939"
           git config --global user.email "parichita.personal@gmail.com"
 
