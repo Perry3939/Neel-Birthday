@@ -16,19 +16,13 @@ jobs:
       - name: Install dependencies
         run: npm install
 
-      - name: Check for changes
-        id: check_changes
-        run: |
-          if git diff-index --quiet HEAD --; then
-            echo "No changes found, exiting."
-            exit 1
-          fi
+      - name: Build
+        run: npm run build
 
-      - name: Build and deploy
-        if: steps.check_changes.outputs.return-code == '0'
-        run: |
-          git config --global user.name "Perry3939"
-          git config --global user.email "parichita.personal@gmail.com"
-          git add .
-          git commit -m "Deploy to main branch"
-          git push origin master
+      # Optionally, you can add steps to run tests, analyze build output, etc.
+
+      - name: Archive build artifacts
+        uses: actions/upload-artifact@v2
+        with:
+          name: build
+          path: build
